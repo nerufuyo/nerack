@@ -1,0 +1,13 @@
+{
+    "folders": [
+        {
+            "path": "../nerack-project"
+        },
+        {
+            "path": "."
+        },
+        {
+            "path": "../nerack-backend"
+        }
+    ]
+}
