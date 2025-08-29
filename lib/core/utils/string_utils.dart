@@ -41,23 +41,27 @@ class StringUtils {
   /// Extract initials from name
   static String getInitials(String name, {int maxInitials = 2}) {
     if (name.isEmpty) return '';
-    
+
     final words = name.trim().split(RegExp(r'\s+'));
     final initials = words
         .take(maxInitials)
         .map((word) => word.isNotEmpty ? word[0].toUpperCase() : '')
         .where((initial) => initial.isNotEmpty)
         .join();
-    
+
     return initials;
   }
 
   /// Generate random string
   static String generateRandomString(int length) {
-    const String chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const String chars =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     final Random random = Random();
     return String.fromCharCodes(
-      Iterable.generate(length, (_) => chars.codeUnitAt(random.nextInt(chars.length))),
+      Iterable.generate(
+        length,
+        (_) => chars.codeUnitAt(random.nextInt(chars.length)),
+      ),
     );
   }
 
@@ -70,7 +74,8 @@ class StringUtils {
   }
 
   /// Check if string is valid password
-  static bool isValidPassword(String password, {
+  static bool isValidPassword(
+    String password, {
     int minLength = 8,
     bool requireUppercase = true,
     bool requireLowercase = true,
@@ -91,7 +96,8 @@ class StringUtils {
       return false;
     }
 
-    if (requireSpecialChars && !password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+    if (requireSpecialChars &&
+        !password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
       return false;
     }
 
@@ -109,7 +115,8 @@ class StringUtils {
   }
 
   /// Mask sensitive data
-  static String maskData(String value, {
+  static String maskData(
+    String value, {
     int visibleStart = 2,
     int visibleEnd = 2,
     String maskChar = '*',
@@ -141,7 +148,8 @@ class StringUtils {
   static String formatFileSize(int bytes) {
     if (bytes < 1024) return '$bytes B';
     if (bytes < 1024 * 1024) return '${(bytes / 1024).toStringAsFixed(1)} KB';
-    if (bytes < 1024 * 1024 * 1024) return '${(bytes / (1024 * 1024)).toStringAsFixed(1)} MB';
+    if (bytes < 1024 * 1024 * 1024)
+      return '${(bytes / (1024 * 1024)).toStringAsFixed(1)} MB';
     return '${(bytes / (1024 * 1024 * 1024)).toStringAsFixed(1)} GB';
   }
 
@@ -159,28 +167,28 @@ class StringUtils {
   static bool isValidISBN(String isbn) {
     // Remove hyphens and spaces
     final cleanISBN = isbn.replaceAll(RegExp(r'[-\s]'), '');
-    
+
     // Check for ISBN-10 or ISBN-13
     if (cleanISBN.length == 10) {
       return _isValidISBN10(cleanISBN);
     } else if (cleanISBN.length == 13) {
       return _isValidISBN13(cleanISBN);
     }
-    
+
     return false;
   }
 
   static bool _isValidISBN10(String isbn) {
     if (!RegExp(r'^[0-9]{9}[0-9X]$').hasMatch(isbn)) return false;
-    
+
     int sum = 0;
     for (int i = 0; i < 9; i++) {
       sum += int.parse(isbn[i]) * (10 - i);
     }
-    
+
     final checkDigit = isbn[9];
     final expectedCheckDigit = (11 - (sum % 11)) % 11;
-    
+
     if (expectedCheckDigit == 10) {
       return checkDigit == 'X';
     } else {
@@ -190,16 +198,16 @@ class StringUtils {
 
   static bool _isValidISBN13(String isbn) {
     if (!RegExp(r'^[0-9]{13}$').hasMatch(isbn)) return false;
-    
+
     int sum = 0;
     for (int i = 0; i < 12; i++) {
       final digit = int.parse(isbn[i]);
       sum += (i % 2 == 0) ? digit : digit * 3;
     }
-    
+
     final checkDigit = int.parse(isbn[12]);
     final expectedCheckDigit = (10 - (sum % 10)) % 10;
-    
+
     return checkDigit == expectedCheckDigit;
   }
 }

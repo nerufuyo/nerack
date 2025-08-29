@@ -70,7 +70,15 @@ class DateTimeUtils {
 
   /// Get end of day
   static DateTime endOfDay(DateTime dateTime) {
-    return DateTime(dateTime.year, dateTime.month, dateTime.day, 23, 59, 59, 999);
+    return DateTime(
+      dateTime.year,
+      dateTime.month,
+      dateTime.day,
+      23,
+      59,
+      59,
+      999,
+    );
   }
 
   /// Get start of week (Monday)

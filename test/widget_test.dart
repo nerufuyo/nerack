@@ -14,11 +14,7 @@ import 'package:nerack/main.dart';
 void main() {
   testWidgets('Nerack app smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(
-      const ProviderScope(
-        child: NerackApp(),
-      ),
-    );
+    await tester.pumpWidget(const ProviderScope(child: NerackApp()));
 
     // Verify that our welcome text is displayed.
     expect(find.text('Welcome to Nerack'), findsOneWidget);

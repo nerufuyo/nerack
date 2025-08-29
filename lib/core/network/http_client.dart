@@ -24,7 +24,7 @@ final dioProvider = Provider<Dio>((ref) {
   if (EnvConfig.debugMode) {
     dio.interceptors.add(LoggingInterceptor());
   }
-  
+
   dio.interceptors.add(AuthInterceptor(ref));
   dio.interceptors.add(ErrorInterceptor());
 

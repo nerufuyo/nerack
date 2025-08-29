@@ -10,7 +10,10 @@ class AuthInterceptor extends Interceptor {
   AuthInterceptor(this._ref);
 
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+  void onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     // Skip authentication for auth endpoints
     if (_isAuthEndpoint(options.path)) {
       return handler.next(options);
@@ -36,7 +39,9 @@ class AuthInterceptor extends Interceptor {
     if (err.response?.statusCode == 401) {
       try {
         final secureStorage = _ref.read(secureStorageServiceProvider);
-        final refreshToken = await secureStorage.read(AppConstants.refreshTokenKey);
+        final refreshToken = await secureStorage.read(
+          AppConstants.refreshTokenKey,
+        );
 
         if (refreshToken != null) {
           final success = await _refreshToken(refreshToken);
@@ -86,8 +91,14 @@ class AuthInterceptor extends Interceptor {
 
         if (newAccessToken != null && newRefreshToken != null) {
           final secureStorage = _ref.read(secureStorageServiceProvider);
-          await secureStorage.write(AppConstants.accessTokenKey, newAccessToken);
-          await secureStorage.write(AppConstants.refreshTokenKey, newRefreshToken);
+          await secureStorage.write(
+            AppConstants.accessTokenKey,
+            newAccessToken,
+          );
+          await secureStorage.write(
+            AppConstants.refreshTokenKey,
+            newRefreshToken,
+          );
           return true;
         }
       }

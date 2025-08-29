@@ -2,11 +2,7 @@ import 'package:equatable/equatable.dart';
 
 /// Base class for all application exceptions
 abstract class AppException extends Equatable implements Exception {
-  const AppException({
-    required this.message,
-    this.code,
-    this.details,
-  });
+  const AppException({required this.message, this.code, this.details});
 
   final String message;
   final String? code;
@@ -16,7 +12,8 @@ abstract class AppException extends Equatable implements Exception {
   List<Object?> get props => [message, code, details];
 
   @override
-  String toString() => 'AppException(message: $message, code: $code, details: $details)';
+  String toString() =>
+      'AppException(message: $message, code: $code, details: $details)';
 }
 
 /// Exception thrown when server returns an error

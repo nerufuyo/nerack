@@ -55,6 +55,6 @@ class EnvConfig {
   static bool get isProduction => environment == 'production';
 
   /// Get API timeout as Duration
-  static Duration get apiTimeoutDuration => 
+  static Duration get apiTimeoutDuration =>
       Duration(milliseconds: int.parse(apiTimeout));
 }

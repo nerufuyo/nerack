@@ -28,7 +28,7 @@ class LoggingInterceptor extends Interceptor {
     message.writeln('🚀 REQUEST [$_tag]');
     message.writeln('Method: ${options.method}');
     message.writeln('URL: ${options.uri}');
-    
+
     if (options.headers.isNotEmpty) {
       message.writeln('Headers:');
       options.headers.forEach((key, value) {
@@ -60,7 +60,7 @@ class LoggingInterceptor extends Interceptor {
     message.writeln('✅ RESPONSE [$_tag]');
     message.writeln('Status Code: ${response.statusCode}');
     message.writeln('URL: ${response.requestOptions.uri}');
-    
+
     if (response.headers.map.isNotEmpty) {
       message.writeln('Headers:');
       response.headers.map.forEach((key, value) {
@@ -81,7 +81,7 @@ class LoggingInterceptor extends Interceptor {
     message.writeln('Type: ${error.type}');
     message.writeln('Message: ${error.message}');
     message.writeln('URL: ${error.requestOptions.uri}');
-    
+
     if (error.response != null) {
       message.writeln('Status Code: ${error.response?.statusCode}');
       message.writeln('Response: ${_formatData(error.response?.data)}');
@@ -92,7 +92,7 @@ class LoggingInterceptor extends Interceptor {
 
   String _formatData(dynamic data) {
     if (data == null) return 'null';
-    
+
     if (data is Map || data is List) {
       try {
         return data.toString();
@@ -100,7 +100,7 @@ class LoggingInterceptor extends Interceptor {
         return 'Failed to format data: $e';
       }
     }
-    
+
     return data.toString();
   }
 

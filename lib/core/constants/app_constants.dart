@@ -6,7 +6,8 @@ class AppConstants {
   // App Information
   static const String appName = 'Nerack';
   static const String appVersion = '1.0.0';
-  static const String appDescription = 'Personal Bookshelf Management Application';
+  static const String appDescription =
+      'Personal Bookshelf Management Application';
 
   // API Configuration
   static const String baseUrl = String.fromEnvironment(
@@ -44,7 +45,12 @@ class AppConstants {
 
   // File Upload
   static const int maxFileSize = 10 * 1024 * 1024; // 10MB
-  static const List<String> allowedImageExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+  static const List<String> allowedImageExtensions = [
+    'jpg',
+    'jpeg',
+    'png',
+    'webp',
+  ];
 
   // Reading Session
   static const Duration minReadingSessionDuration = Duration(minutes: 1);
@@ -58,10 +64,14 @@ class AppConstants {
   // Notification Settings
   static const String notificationChannelId = 'nerack_notifications';
   static const String notificationChannelName = 'Nerack Notifications';
-  static const String notificationChannelDescription = 'Notifications for reading reminders and updates';
+  static const String notificationChannelDescription =
+      'Notifications for reading reminders and updates';
 
   // Error Messages
-  static const String genericErrorMessage = 'Something went wrong. Please try again.';
-  static const String networkErrorMessage = 'Please check your internet connection and try again.';
-  static const String unauthorizedErrorMessage = 'Your session has expired. Please log in again.';
+  static const String genericErrorMessage =
+      'Something went wrong. Please try again.';
+  static const String networkErrorMessage =
+      'Please check your internet connection and try again.';
+  static const String unauthorizedErrorMessage =
+      'Your session has expired. Please log in again.';
 }

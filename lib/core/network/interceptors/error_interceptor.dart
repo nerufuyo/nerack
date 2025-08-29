@@ -29,7 +29,8 @@ class ErrorInterceptor extends Interceptor {
 
       case DioExceptionType.connectionError:
         return const NetworkException(
-          message: 'Unable to connect to server. Please check your internet connection.',
+          message:
+              'Unable to connect to server. Please check your internet connection.',
           code: 'CONNECTION_ERROR',
         );
 
@@ -159,7 +160,9 @@ class ErrorInterceptor extends Interceptor {
 
   Map<String, dynamic>? _extractErrorDetails(dynamic data) {
     if (data is Map<String, dynamic>) {
-      return Map<String, dynamic>.from(data)..remove('message')..remove('error');
+      return Map<String, dynamic>.from(data)
+        ..remove('message')
+        ..remove('error');
     }
     return null;
   }

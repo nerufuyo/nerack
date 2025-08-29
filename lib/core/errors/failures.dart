@@ -2,11 +2,7 @@ import 'package:equatable/equatable.dart';
 
 /// Base class for all application failures
 abstract class Failure extends Equatable {
-  const Failure({
-    required this.message,
-    this.code,
-    this.details,
-  });
+  const Failure({required this.message, this.code, this.details});
 
   final String message;
   final String? code;
@@ -16,7 +12,8 @@ abstract class Failure extends Equatable {
   List<Object?> get props => [message, code, details];
 
   @override
-  String toString() => 'Failure(message: $message, code: $code, details: $details)';
+  String toString() =>
+      'Failure(message: $message, code: $code, details: $details)';
 }
 
 /// Failure representing server-related errors
@@ -111,6 +108,15 @@ class RateLimitFailure extends Failure {
   const RateLimitFailure({
     super.message = 'Rate limit exceeded. Please try again later.',
     super.code = 'RATE_LIMIT_ERROR',
+    super.details,
+  });
+}
+
+/// Failure representing unknown or unexpected errors
+class UnknownFailure extends Failure {
+  const UnknownFailure({
+    super.message = 'An unexpected error occurred',
+    super.code = 'UNKNOWN_ERROR',
     super.details,
   });
 }
